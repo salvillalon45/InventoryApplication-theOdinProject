@@ -22,6 +22,11 @@ const ItemSchema = new Schema({
 	category: {
 		type: String,
 		required: true
+	},
+	category_ref: {
+		type: Schema.Types.ObjectId,
+		ref: 'Category',
+		required: true
 	}
 });
 

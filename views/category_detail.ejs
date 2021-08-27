@@ -1,0 +1,47 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= category.name %></h1>
+			<p>
+				The <%= category.name %> has been one of the greatest system
+				alive!
+			</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p>Avaialble Titles</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="test">
+				<% for (let i = 0; i < video_games.length; i++) { %>
+				<div class="card" style="width: 18rem">
+					<img src="..." class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title"><%= video_games[i].name %></h5>
+						<p class="card-text">
+							<%= video_games[i].description %>
+						</p>
+						<p class="card-text"><%= video_games[i].price %></p>
+						<p class="card-text"><%= video_games[i].stock %></p>
+						<% const link = '/home/' + video_games[i].url; %>
+						<p>
+							<a href="<%= link %>" class="btn btn-primary"
+								>Go to detail</a
+							>
+						</p>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('footer') -%>

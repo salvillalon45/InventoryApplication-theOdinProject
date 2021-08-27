@@ -1,0 +1,30 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+
+			<ul>
+				<% for (var i = 0; i < category_list.length; i++) { %>
+				<li class="timeline-yellow">
+					<div class="timeline-time">
+						<u>
+							<b>
+								<p><%= category_list[i].name %></p>
+							</b>
+						</u>
+						<p><%= category_list[i].description %></p>
+						<% const link = '/home/' + category_list[i].url; %>
+						<p>
+							<a href="<%= link %>">Go to detail</a>
+						</p>
+					</div>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<%- include('footer') -%>

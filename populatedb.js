@@ -26,12 +26,29 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var items = [];
 var categories = [];
 
-function itemCreate(name, stock, price, description, category, cb) {
-	var itemDetail = { name, stock, price, description, category };
+function itemCreate(
+	name,
+	stock,
+	price,
+	description,
+	category,
+	category_ref,
+	cb
+) {
+	var itemDetail = {
+		name,
+		stock,
+		price,
+		description,
+		category,
+		category_ref
+	};
 	var item = new Item(itemDetail);
 
 	item.save(function (err) {
 		if (err) {
+			console.log('error in item create');
+			console.log(err);
 			cb(err, null);
 			return;
 		}
@@ -67,16 +84,7 @@ function createItems(cb) {
 					'$39.99',
 					'The game after Moon',
 					'Nintendo 3DS',
-					callback
-				);
-			},
-			function (callback) {
-				itemCreate(
-					'Pokemon Sword',
-					100,
-					'$59.99',
-					'The game for switch',
-					'Nintendo Switch',
+					categories[0],
 					callback
 				);
 			},
@@ -87,6 +95,7 @@ function createItems(cb) {
 					'$39.99',
 					'CRYSTAL',
 					'Game Boy Color',
+					categories[1],
 					callback
 				);
 			},
@@ -97,6 +106,18 @@ function createItems(cb) {
 					'$39.99',
 					'Great RPG Game',
 					'Game Boy Advance',
+					categories[2],
+					callback
+				);
+			},
+			function (callback) {
+				itemCreate(
+					'Pokemon Sword',
+					100,
+					'$59.99',
+					'The game for switch',
+					'Nintendo Switch',
+					categories[3],
 					callback
 				);
 			},
@@ -107,6 +128,7 @@ function createItems(cb) {
 					'$39.99',
 					'Great ZELDA',
 					'Nintendo Wii',
+					categories[4],
 					callback
 				);
 			}
