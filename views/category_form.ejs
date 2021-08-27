@@ -1,0 +1,44 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+
+			<form method="POST" action="">
+				<div class="mb-3">
+					<label for="name" class="form-label"
+						>Video Game Console Name</label
+					>
+					<p><%= category %></p>
+					<input
+						type="text"
+						name="name"
+						class="form-control"
+						id="videoGameConsoleName"
+						placeholder="PSP, Game Boy, etc."
+						value="<%= null === category ? '' : category.name %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="description" class="form-label"
+						>Video Game Console Description</label
+					>
+					<input
+						type="text"
+						name="description"
+						class="form-control"
+						id="videoGameConsoleDescription"
+						placeholder="The PSP is ..."
+						value="<%= null === category ? '' : category.description %>"
+					/>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<%- include('footer') -%>

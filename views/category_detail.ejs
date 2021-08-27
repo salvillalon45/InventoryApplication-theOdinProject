@@ -31,8 +31,11 @@
 						<p class="card-text"><%= video_games[i].price %></p>
 						<p class="card-text"><%= video_games[i].stock %></p>
 						<% const link = '/home/' + video_games[i].url; %>
+						<p><%= video_games[i].url %></p>
 						<p>
-							<a href="<%= link %>" class="btn btn-primary"
+							<a
+								href="<%= video_games[i].url %>"
+								class="btn btn-primary"
 								>Go to detail</a
 							>
 						</p>

@@ -4,6 +4,7 @@
 	<div class="row">
 		<div class="col">
 			<h1><%= title %></h1>
+			<p><a href="/home/category/create">Create A New Category</a></p>
 
 			<ul>
 				<% for (var i = 0; i < category_list.length; i++) { %>
@@ -15,9 +16,10 @@
 							</b>
 						</u>
 						<p><%= category_list[i].description %></p>
-						<% const link = '/home/' + category_list[i].url; %>
 						<p>
-							<a href="<%= link %>">Go to detail</a>
+							<a href="<%= category_list[i].url %>"
+								>Go to detail</a
+							>
 						</p>
 					</div>
 				</li>

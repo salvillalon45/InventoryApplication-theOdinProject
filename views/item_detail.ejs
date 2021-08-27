@@ -1,0 +1,25 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<img src="..." class="img-fluid" alt="Video Game Picture" />
+		</div>
+
+		<div class="col">
+			<h1><%= item_detail.name %></h1>
+			<p><%= item_detail.description %></p>
+			<p>
+				<b>Price: </b>
+				<%= item_detail.price %>
+			</p>
+			<p>
+				<b>Stock: </b>
+				<%= item_detail.stock %>
+			</p>
+			<p><a href="#">Watch the trailer</a></p>
+		</div>
+	</div>
+</div>
+
+<%- include('footer') -%>
