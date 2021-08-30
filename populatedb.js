@@ -32,7 +32,8 @@ function itemCreate(
 	price,
 	description,
 	category,
-	category_ref,
+	trailer_url,
+	image_url,
 	cb
 ) {
 	var itemDetail = {
@@ -41,7 +42,8 @@ function itemCreate(
 		price,
 		description,
 		category,
-		category_ref
+		trailer_url,
+		image_url
 	};
 	var item = new Item(itemDetail);
 
@@ -83,8 +85,10 @@ function createItems(cb) {
 					100,
 					'$39.99',
 					'The game after Moon',
-					'Nintendo 3DS',
+					// 'Nintendo 3DS',
 					categories[0],
+					'https://www.youtube.com/',
+					'https://www.youtube.com/',
 					callback
 				);
 			},
@@ -94,8 +98,10 @@ function createItems(cb) {
 					100,
 					'$39.99',
 					'CRYSTAL',
-					'Game Boy Color',
+					// 'Game Boy Color',
 					categories[1],
+					'https://www.youtube.com/',
+					'https://www.youtube.com/',
 					callback
 				);
 			},
@@ -105,8 +111,10 @@ function createItems(cb) {
 					100,
 					'$39.99',
 					'Great RPG Game',
-					'Game Boy Advance',
+					// 'Game Boy Advance',
 					categories[2],
+					'https://www.youtube.com/',
+					'https://www.youtube.com/',
 					callback
 				);
 			},
@@ -116,8 +124,10 @@ function createItems(cb) {
 					100,
 					'$59.99',
 					'The game for switch',
-					'Nintendo Switch',
+					// 'Nintendo Switch',
 					categories[3],
+					'https://www.youtube.com/',
+					'https://www.youtube.com/',
 					callback
 				);
 			},
@@ -127,8 +137,10 @@ function createItems(cb) {
 					100,
 					'$39.99',
 					'Great ZELDA',
-					'Nintendo Wii',
+					// 'Nintendo Wii',
 					categories[4],
+					'https://www.youtube.com/',
+					'https://www.youtube.com/',
 					callback
 				);
 			}

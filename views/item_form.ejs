@@ -1,0 +1,102 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+
+			<form method="POST" action="">
+				<div class="mb-3">
+					<label for="name" class="form-label">Video Game Name</label>
+					<input
+						type="text"
+						name="name"
+						class="form-control"
+						id="videoGameConsoleName"
+						value="<%= null === item ? '' : item.name %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="description" class="form-label"
+						>Video Game Description</label
+					>
+					<input
+						type="text"
+						name="description"
+						class="form-control"
+						id="videoGameConsoleDescription"
+						placeholder="The PSP is ..."
+						value="<%= null === item ? '' : item.description %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="category" class="form-label"
+						>Video Game Console</label
+					>
+					<input
+						type="text"
+						name="category"
+						class="form-control"
+						id="category"
+						placeholder="PSP, Game Boy, etc."
+						value="<%= null === item ? '' : item.category %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="stock" class="form-label">Stock</label>
+					<input
+						type="text"
+						name="stock"
+						class="form-control"
+						id="stock"
+						placeholder="100"
+						value="<%= null === item ? '' : item.stock %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="price" class="form-label">Price</label>
+					<input
+						type="text"
+						name="price"
+						class="form-control"
+						id="price"
+						placeholder="$99.99"
+						value="<%= null === item ? '' : item.price %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="trailer_url" class="form-label"
+						>Trailer Url</label
+					>
+					<input
+						type="text"
+						name="trailer_url"
+						class="form-control"
+						id="trailer_url"
+						value="<%= null === item ? '' : item.trailer_url %>"
+					/>
+				</div>
+
+				<div class="mb-3">
+					<label for="image_url" class="form-label">Image Url</label>
+					<input
+						type="text"
+						name="image_url"
+						class="form-control"
+						id="image_url"
+						value="<%= null === item ? '' : item.image_url %>"
+					/>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<%- include('footer') -%>

@@ -26,7 +26,7 @@ exports.category_detail = function (req, res, next) {
 			},
 			video_games: function (callback) {
 				Item.find(
-					{ category_ref: req.params.id },
+					{ category: req.params.id },
 					'name stock price description category'
 				).exec(callback);
 			}
