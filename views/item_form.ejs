@@ -95,6 +95,23 @@
 
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
+
+			<%if (errors) { %>
+			<div class="errorsContainer">
+				<p>You got errors on the following:</p>
+				<ul>
+					<% for (var i = 0; i < errors.length; i++) {%>
+
+					<li>
+						<%= errors[i].msg %> on <%= errors[i].param %>. The
+						value <%= errors[i].value === '' ? 'of empty field' : ''
+						%> is not allowed
+					</li>
+
+					<% } %>
+				</ul>
+			</div>
+			<% }%>
 		</div>
 	</div>
 </div>

@@ -21,7 +21,8 @@ exports.item_detail = function (req, res, next) {
 exports.item_create_get = function (req, res) {
 	res.render('item_form', {
 		item: null,
-		title: 'Create A New Item'
+		title: 'Create A New Item',
+		errors: null
 	});
 };
 
@@ -84,11 +85,19 @@ exports.item_create_post = [
 					// 		return;
 					// 	}
 					// }
-					res.render('book_form', {
+					console.log('What are errors');
+					console.log(errors);
+					res.render('item_form', {
 						title: 'Create Book',
-						authors: results.authors,
-						genres: results.genres,
-						book: book,
+						item: {
+							name: req.body.name,
+							description: req.body.description,
+							stock: req.body.stock,
+							price: req.body.price,
+							category: req.body.category,
+							trailer_url: req.body.trailer_url,
+							image_url: req.body.image_url
+						},
 						errors: errors.array()
 					});
 				}

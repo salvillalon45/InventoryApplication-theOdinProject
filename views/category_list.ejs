@@ -4,7 +4,9 @@
 	<div class="row">
 		<div class="col">
 			<h1><%= title %></h1>
-			<p><a href="/home/category/create">Create A New Category</a></p>
+			<p>
+				<a href="/home/category/create">Create A New Category</a>
+			</p>
 
 			<ul>
 				<% for (var i = 0; i < category_list.length; i++) { %>
@@ -19,6 +21,11 @@
 						<p>
 							<a href="<%= category_list[i].url %>"
 								>Go to detail</a
+							>
+						</p>
+						<p>
+							<a href="<%= category_list[i].url + '/update' %>"
+								>Update Category</a
 							>
 						</p>
 					</div>

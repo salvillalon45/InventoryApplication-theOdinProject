@@ -72,9 +72,7 @@ exports.category_create_post = [
 	(req, res, next) => {
 		// Extract the validation errors from a request
 		const errors = validationResult(req);
-		console.log('What is name and des');
-		console.log(req.body.name);
-		console.log(req.body.description);
+
 		// Create a Category object with escaped and trimmed data
 		const category = new Category({
 			name: req.body.name,
@@ -133,11 +131,72 @@ exports.category_delete_post = function (req, res) {
 };
 
 // Display category update form on GET.
-exports.category_update_get = function (req, res) {
-	res.send('NOT IMPLEMENTED: category update GET');
+exports.category_update_get = function (req, res, next) {
+	Category.findById(req.params.id).exec(function (err, results) {
+		if (err) {
+			return next(err);
+		}
+
+		if (results.category === null) {
+			// No results.
+			const err = new Error('Category not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		res.render('category_form', {
+			category: results,
+			title: 'Update Category',
+			errors: null
+		});
+	});
 };
 
 // Handle category update on POST.
-exports.category_update_post = function (req, res) {
-	res.send('NOT IMPLEMENTED: category update POST');
-};
+exports.category_update_post = [
+	// Validate and sanitize fields.
+	body('name').trim().isLength({ min: 1 }).escape(),
+	body('description').trim().isLength({ min: 1 }).escape(),
+
+	// Process request after validation and sanitization
+	(req, res, next) => {
+		console.log('Going to begin');
+		// Extract the validation errors from a request
+		const errors = validationResult(req);
+
+		// Create a Category object with escaped and trimmed data
+		const category = new Category({
+			name: req.body.name,
+			description: req.body.description,
+			_id: req.params.id //This is required, or a new ID will be assigned!
+		});
+		console.log('The new Categoryu');
+		console.log(category);
+		if (!errors.isEmpty()) {
+			// There are errors. Render form again with sanitized values/error messages.
+			res.render('category_form', {
+				title: 'Update Category',
+				category: category,
+				errors: errors.array()
+			});
+		} else {
+			// Data from form is valid
+			// Check if Category with the same name already exists
+			Category.findByIdAndUpdate(
+				req.params.id,
+				category,
+				{},
+				function (err, thecategory) {
+					if (err) {
+						console.log('What is err when finding');
+						console.log(err);
+						return next(err);
+					}
+					// Successful - redirect to caetgory detail page.
+					console.log('GOing to redirect!');
+					res.redirect(thecategory.url);
+				}
+			);
+		}
+	}
+];
