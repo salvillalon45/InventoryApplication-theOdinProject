@@ -151,13 +151,45 @@ exports.item_create_post = [
 ];
 
 // Display item delete form on GET.
-exports.item_delete_get = function (req, res) {
-	res.send('NOT IMPLEMENTED: item delete GET');
+exports.item_delete_get = function (req, res, next) {
+	Item.findById(req.params.id).exec(function (err, item) {
+		console.log('Inside item_delete_get()');
+		console.log('What is item');
+		console.log(item);
+		if (err) {
+			return next(err);
+		}
+
+		if (item === null) {
+			// No results.
+			res.redirect('/home/categories');
+		}
+		// Successful, so render.
+		console.log('GOing to render');
+		res.render('item_delete', {
+			title: 'Delete Item',
+			item: item
+		});
+	});
 };
 
 // Handle item delete on POST.
-exports.item_delete_post = function (req, res) {
-	res.send('NOT IMPLEMENTED: item delete POST');
+exports.item_delete_post = function (req, res, next) {
+	Item.findById(req.params.id).exec(function (err, item) {
+		if (err) {
+			return next(err);
+		}
+
+		// Category has video games. Delete object and redirect to the list of categories.
+		Item.findByIdAndRemove(req.params.id, function deleteCategory(err) {
+			if (err) {
+				return next(err);
+			}
+
+			// Success go to category list
+			res.redirect('/home/category');
+		});
+	});
 };
 
 // Display item update form on GET.
@@ -226,32 +258,40 @@ exports.item_update_post = [
 		console.log('The new Item');
 		console.log(item);
 		console.log(item.category);
-		if (!errors.isEmpty()) {
-			// There are errors. Render form again with sanitized values/error messages.
-			res.render('item_form', {
-				title: 'Update Item',
-				item: item,
-				errors: errors.array()
-			});
-		} else {
-			// Data from form is valid
+		Category.find({ name: req.body.category }).then((category) => {
+			console.log('Found category');
+			console.log(category[0]);
+			item.category = category[0];
 
-			// Check if Item with the same name already exists
-			Item.findByIdAndUpdate(
-				req.params.id,
-				item,
-				{},
-				function (err, theitem) {
-					if (err) {
-						console.log('What is err when finding');
-						console.log(err);
-						return next(err);
+			console.log('What is item after item.category');
+			console.log(item);
+			if (!errors.isEmpty()) {
+				// There are errors. Render form again with sanitized values/error messages.
+				res.render('item_form', {
+					title: 'Update Item',
+					item: item,
+					errors: errors.array()
+				});
+			} else {
+				// Data from form is valid
+
+				// Check if Item with the same name already exists
+				Item.findByIdAndUpdate(
+					req.params.id,
+					item,
+					{},
+					function (err, theitem) {
+						if (err) {
+							console.log('What is err when finding');
+							console.log(err);
+							return next(err);
+						}
+						// Successful - redirect to item detail page.
+						console.log('GOing to redirect!');
+						res.redirect(theitem.url);
 					}
-					// Successful - redirect to item detail page.
-					console.log('GOing to redirect!');
-					res.redirect(theitem.url);
-				}
-			);
-		}
+				);
+			}
+		});
 	}
 ];

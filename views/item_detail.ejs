@@ -8,7 +8,10 @@
 
 		<div class="col">
 			<h1><%= item.name %></h1>
-			<p><%= item.description %></p>
+			<p>
+				<b>Description</b>
+				<%= item.description %>
+			</p>
 			<p>
 				<b>Price: </b>
 				<%= item.price %>
@@ -20,6 +23,9 @@
 			<p><a href="#">Watch the trailer</a></p>
 			<p>
 				<a href="<%= item.url + '/update' %>">Update Item</a>
+			</p>
+			<p>
+				<a href="<%= item.url + '/delete' %>">Delete Item</a>
 			</p>
 		</div>
 	</div>

@@ -1,0 +1,30 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+			<hr />
+		</div>
+	</div>
+
+	<div>
+		<p>
+			<b> Do you really want to delete this Item? </b>
+		</p>
+		<p><%= item.name %></p>
+
+		<form method="POST" action="">
+			<input
+				type="hidden"
+				name="categoryId"
+				required="true"
+				value="<%= item._id %>"
+				class="form-control"
+			/>
+			<button type="submit" class="btn btn-primary">Delete</button>
+		</form>
+	</div>
+</div>
+
+<%- include('footer') -%>
