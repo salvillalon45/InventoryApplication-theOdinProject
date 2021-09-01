@@ -1,0 +1,53 @@
+<%- include('header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+			<p><%= category.name %></p>
+		</div>
+	</div>
+
+	<%if (video_games.length) { %>
+	<div>
+		<p>
+			<b>
+				Delete the following video games before attempting to delete
+				this category
+			</b>
+		</p>
+
+		<p>Video Games</p>
+
+		<div>
+			<% for (let i = 0; i < video_games.length; i++) {%>
+			<p>
+				<a href="<%= video_games[i].url %>">
+					<%= video_games[i].name %>
+				</a>
+			</p>
+			<!-- <p><a href="<%= video_games[0].url %>"></p> -->
+			<% } %>
+		</div>
+	</div>
+	<% } else { %>
+	<div>
+		<p>
+			<b> Do you really want to delete this Category? </b>
+		</p>
+
+		<form method="POST" action="">
+			<input
+				type="hidden"
+				name="categoryId"
+				required="true"
+				value="<%= category._id %>"
+				class="form-control"
+			/>
+			<button type="submit" class="btn btn-primary">Delete</button>
+		</form>
+	</div>
+	<% }%>
+</div>
+
+<%- include('footer') -%>

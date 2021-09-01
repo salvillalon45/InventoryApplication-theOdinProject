@@ -2,17 +2,16 @@ const Item = require('../models/item');
 const Category = require('../models/category');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
-const category = require('../models/category');
 
 // Display detail page for an specific item
 exports.item_detail = function (req, res, next) {
-	Item.findById(req.params.id).exec(function (err, item_detail) {
+	Item.findById(req.params.id).exec(function (err, item) {
 		if (err) {
 			return next(err);
 		}
 
 		res.render('item_detail', {
-			item_detail: item_detail
+			item: item
 		});
 	});
 };
@@ -162,11 +161,97 @@ exports.item_delete_post = function (req, res) {
 };
 
 // Display item update form on GET.
-exports.item_update_get = function (req, res) {
-	res.send('NOT IMPLEMENTED: item update GET');
+exports.item_update_get = function (req, res, next) {
+	Item.findById(req.params.id).exec(function (err, item) {
+		if (err) {
+			return next(err);
+		}
+
+		if (item === null) {
+			// No results.
+			const err = new Error('Item not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		console.log('What are results from itemUpdate');
+		console.log(item);
+		Category.findById(item.category).then((category) => {
+			console.log('Found category');
+			console.log(category);
+
+			item.category = category;
+
+			res.render('item_form', {
+				item: item,
+				title: 'Update Item',
+				errors: null
+			});
+		});
+	});
 };
 
 // Handle item update on POST.
-exports.item_update_post = function (req, res) {
-	res.send('NOT IMPLEMENTED: item update POST');
-};
+exports.item_update_post = [
+	// Validate and sanitize fields.
+	body('name').trim().isLength({ min: 1 }).escape(),
+	body('stock').trim().isLength({ min: 1 }).escape(),
+	body('price').trim().isLength({ min: 1 }).escape(),
+	body('description').trim().isLength({ min: 1 }).escape(),
+	body('category').trim().isLength({ min: 1 }).escape(),
+	body('trailer_url').trim().isLength({ min: 1 }).escape(),
+	body('image_url').trim().isLength({ min: 1 }).escape(),
+
+	// Process request after validation and sanitization
+	(req, res, next) => {
+		console.log('Going to begin');
+		console.log('Category Check');
+		console.log(req.body);
+		console.log(req.body.category);
+		// Extract the validation errors from a request
+		const errors = validationResult(req);
+
+		// Create a Category object with escaped and trimmed data
+		const item = new Item({
+			name: req.body.name,
+			description: req.body.description,
+			stock: req.body.stock,
+			price: req.body.price,
+			category: req.body.category,
+			trailer_url: req.body.trailer_url,
+			image_url: req.body.image_url,
+			_id: req.params.id //This is required, or a new ID will be assigned!
+		});
+
+		console.log('The new Item');
+		console.log(item);
+		console.log(item.category);
+		if (!errors.isEmpty()) {
+			// There are errors. Render form again with sanitized values/error messages.
+			res.render('item_form', {
+				title: 'Update Item',
+				item: item,
+				errors: errors.array()
+			});
+		} else {
+			// Data from form is valid
+
+			// Check if Item with the same name already exists
+			Item.findByIdAndUpdate(
+				req.params.id,
+				item,
+				{},
+				function (err, theitem) {
+					if (err) {
+						console.log('What is err when finding');
+						console.log(err);
+						return next(err);
+					}
+					// Successful - redirect to item detail page.
+					console.log('GOing to redirect!');
+					res.redirect(theitem.url);
+				}
+			);
+		}
+	}
+];

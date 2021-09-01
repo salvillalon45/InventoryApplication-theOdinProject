@@ -58,7 +58,8 @@ exports.category_detail = function (req, res, next) {
 exports.category_create_get = function (req, res) {
 	res.render('category_form', {
 		category: null,
-		title: 'Create A New Category'
+		title: 'Create A New Category',
+		errors: null
 	});
 };
 
@@ -121,13 +122,79 @@ exports.category_create_post = [
 ];
 
 // Display category delete form on GET.
-exports.category_delete_get = function (req, res) {
-	res.send('NOT IMPLEMENTED: category delete GET');
+exports.category_delete_get = function (req, res, next) {
+	async.parallel(
+		{
+			category: function (callback) {
+				Category.findById(req.params.id).exec(callback);
+			},
+			video_games: function (callback) {
+				Item.find({ category: req.params.id }).exec(callback);
+			}
+		},
+		function (err, results) {
+			console.log('What are videoGames');
+			console.log(results.category);
+			console.log(results.video_games.length);
+
+			if (err) {
+				return next(err);
+			}
+			if (results.category === null) {
+				// No results.
+				res.redirect('/home/categories');
+			}
+			// Successful, so render.
+			console.log('GOing to render');
+			res.render('category_delete', {
+				title: 'Delete Category',
+				category: results.category,
+				video_games: results.video_games
+			});
+		}
+	);
 };
 
 // Handle category delete on POST.
-exports.category_delete_post = function (req, res) {
-	res.send('NOT IMPLEMENTED: category delete POST');
+exports.category_delete_post = function (req, res, next) {
+	async.parallel(
+		{
+			category: function (callback) {
+				Category.findById(req.body.categoryId).exec(callback);
+			},
+			video_games: function (callback) {
+				Item.find({ category: req.body.categoryId }).exec(callback);
+			}
+		},
+		function (err, results) {
+			if (err) {
+				return next(err);
+			}
+			// Success
+			if (results.video_games.length > 0) {
+				// Category has video games. Render in same way as for GET route.
+				res.render('category_delete', {
+					title: 'Delete Category',
+					category: results.category,
+					video_games: results.video_games
+				});
+				return;
+			} else {
+				// Category has video games. Delete object and redirect to the list of categories.
+				Category.findByIdAndRemove(
+					req.body.categoryId,
+					function deleteCategory(err) {
+						if (err) {
+							return next(err);
+						}
+
+						// Success go to category list
+						res.redirect('/home/category');
+					}
+				);
+			}
+		}
+	);
 };
 
 // Display category update form on GET.

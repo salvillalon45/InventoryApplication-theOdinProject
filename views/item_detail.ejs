@@ -7,17 +7,20 @@
 		</div>
 
 		<div class="col">
-			<h1><%= item_detail.name %></h1>
-			<p><%= item_detail.description %></p>
+			<h1><%= item.name %></h1>
+			<p><%= item.description %></p>
 			<p>
 				<b>Price: </b>
-				<%= item_detail.price %>
+				<%= item.price %>
 			</p>
 			<p>
 				<b>Stock: </b>
-				<%= item_detail.stock %>
+				<%= item.stock %>
 			</p>
 			<p><a href="#">Watch the trailer</a></p>
+			<p>
+				<a href="<%= item.url + '/update' %>">Update Item</a>
+			</p>
 		</div>
 	</div>
 </div>
