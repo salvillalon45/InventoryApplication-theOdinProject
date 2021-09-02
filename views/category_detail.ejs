@@ -27,7 +27,11 @@
 			<div class="test">
 				<% for (let i = 0; i < video_games.length; i++) { %>
 				<div class="card" style="width: 18rem">
-					<img src="..." class="card-img-top" alt="..." />
+					<img
+						src="<%= video_games[i].image_url %>"
+						class="card-img-top"
+						alt="Image of Video Game"
+					/>
 					<div class="card-body">
 						<h5 class="card-title"><%= video_games[i].name %></h5>
 						<p class="card-text">
@@ -35,7 +39,6 @@
 						</p>
 						<p class="card-text"><%= video_games[i].price %></p>
 						<p class="card-text"><%= video_games[i].stock %></p>
-						<% const link = '/home/' + video_games[i].url; %>
 						<p><%= video_games[i].url %></p>
 						<p>
 							<a

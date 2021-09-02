@@ -25,10 +25,7 @@ exports.category_detail = function (req, res, next) {
 				Category.findById(req.params.id).exec(callback);
 			},
 			video_games: function (callback) {
-				Item.find(
-					{ category: req.params.id },
-					'name stock price description category'
-				).exec(callback);
+				Item.find({ category: req.params.id }).exec(callback);
 			}
 		},
 		function (err, results) {

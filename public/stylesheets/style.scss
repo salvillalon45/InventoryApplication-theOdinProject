@@ -1,9 +1,8 @@
-// body
-//   padding: 50px
-//   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-
-// a
-//   color: #00B7FF
+// -----------------------------------------------
+//
+// Styling for the entire app
+//
+// -----------------------------------------------
 html,
 body {
 	margin: 0;
@@ -32,3 +31,7 @@ main {
 .errorsContainer {
 	color: red;
 }
+
+// View Styles
+// --------------------------------------------
+@import './index.scss';
