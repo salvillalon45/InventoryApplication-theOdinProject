@@ -1,9 +1,9 @@
-.landingContainer {
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
+:root {
+  --blue: #393e5f;
+  --white: #ffffff;
+  --orange: #fc9705;
+  --rufina: 'Rufina', serif;
+  --source: 'Source Sans Pro', sans-serif; }
 
 html,
 body {
@@ -12,7 +12,7 @@ body {
   box-sizing: border-box;
   height: 100%;
   font-family: var(--source);
-  background-color: var(--black); }
+  background-color: var(--blue); }
 
 body {
   display: flex;
@@ -28,5 +28,14 @@ main {
 
 .errorsContainer {
   color: red; }
+
+#landingContainer {
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  #landingContainer .landingTextContainer {
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */

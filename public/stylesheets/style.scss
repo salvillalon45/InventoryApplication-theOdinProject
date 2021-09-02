@@ -3,6 +3,16 @@
 // Styling for the entire app
 //
 // -----------------------------------------------
+// Color Variables
+// -----------------------------------------------
+:root {
+	--blue: #393e5f;
+	--white: #ffffff;
+	--orange: #fc9705;
+	--rufina: 'Rufina', serif;
+	--source: 'Source Sans Pro', sans-serif;
+}
+
 html,
 body {
 	margin: 0;
@@ -10,7 +20,7 @@ body {
 	box-sizing: border-box;
 	height: 100%;
 	font-family: var(--source);
-	background-color: var(--black);
+	background-color: var(--blue);
 }
 
 body {
