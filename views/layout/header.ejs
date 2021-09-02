@@ -9,13 +9,14 @@
 			integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
-		<header>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<header id='headerContainer'>
+			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/home">Sal's Video Game Store</a>
+					<a class="navbar-brand" href="/home" id='logo'>Sal's Video Game Store</a>
 					<button
 						class="navbar-toggler"
 						type="button"
@@ -31,17 +32,17 @@
 						class="collapse navbar-collapse"
 						id="navbarSupportedContent"
 					>
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 							<li class="nav-item">
 								<a
-									class="nav-link active"
+									class="nav-link menuLink"
 									aria-current="page"
 									href="/home"
 									>Home</a
 								>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/home/category"
+								<a class="nav-link menuLink" href="/home/category"
 									>Categories</a
 								>
 							</li>

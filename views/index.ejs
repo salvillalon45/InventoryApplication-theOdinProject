@@ -1,15 +1,21 @@
-<%- include('header') -%>
+<%- include('./layout/header') -%>
 
 <div class="container" id="landingContainer">
 	<div class="row">
 		<div class="col">
 			<div class="landingTextContainer">
-				<h1>Welcome to Sal's Video Game Store!</h1>
-				<p>Find all sorts of video games here! We sell them all!</p>
-				<p><a href="/home/category">Click Here To View</a></p>
+				<h1>Welcome to Sal's Video Game Store</h1>
+				<p>Find all sorts of video games</p>
+				<p>
+					<a
+						href="/home/category"
+						class="btn btn-primary navigationButton"
+						>Get Started</a
+					>
+				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<%- include('footer') -%>
+<%- include('./layout/footer') -%>

@@ -12,5 +12,16 @@
 
 	.landingTextContainer {
 		color: white;
+
+		h1 {
+			font-family: var(--exo2);
+			font-weight: 700;
+			font-size: 3.5rem;
+		}
+
+		p {
+			font-family: var(--ptsans);
+			font-size: 1.2rem;
+		}
 	}
 }

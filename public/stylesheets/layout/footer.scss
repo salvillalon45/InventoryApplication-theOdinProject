@@ -1,0 +1,25 @@
+// -----------------------------------------------
+//
+// Styling for Footer
+//
+// -----------------------------------------------
+#footerContainer {
+	display: flex;
+	justify-content: flex-end;
+	color: white;
+
+	.footerContentContainer {
+		display: flex;
+
+		a {
+			color: white;
+		}
+
+		p {
+			margin-left: 15px;
+			margin-right: 15px;
+			font-size: 18px;
+			font-family: var(--ptsans);
+		}
+	}
+}

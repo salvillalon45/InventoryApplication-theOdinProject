@@ -3,14 +3,20 @@
 // Styling for the entire app
 //
 // -----------------------------------------------
+
+// Fonts
+// -----------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=PT+Sans:wght@400;700&display=swap');
+
 // Color Variables
 // -----------------------------------------------
 :root {
-	--blue: #393e5f;
+	--blue: #181a2b;
 	--white: #ffffff;
-	--orange: #fc9705;
-	--rufina: 'Rufina', serif;
-	--source: 'Source Sans Pro', sans-serif;
+	--orange: #cd8113;
+	--orangeHover: #e48c0c;
+	--exo2: 'Exo 2', sans-serif;
+	--ptsans: 'PT Sans', sans-serif;
 }
 
 html,
@@ -42,6 +48,26 @@ main {
 	color: red;
 }
 
+.navigationButton {
+	color: #fff;
+	background-color: var(--orange);
+	border-color: var(--orange);
+}
+
+.navigationButton:hover {
+	color: #fff;
+	background-color: var(--orangeHover);
+	border-color: var(--orangeHover);
+}
+
+.navigationButton:focus {
+	box-shadow: 0 0 0 0.25rem var(--orange);
+	background-color: var(--orangeHover);
+	border-color: var(--orangeHover);
+}
+
 // View Styles
 // --------------------------------------------
-@import './index.scss';
+@import './pages/index.scss';
+@import './layout/header.scss';
+@import './layout/footer.scss';

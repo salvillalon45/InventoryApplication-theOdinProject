@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=PT+Sans:wght@400;700&display=swap");
 :root {
-  --blue: #393e5f;
+  --blue: #181a2b;
   --white: #ffffff;
-  --orange: #fc9705;
-  --rufina: 'Rufina', serif;
-  --source: 'Source Sans Pro', sans-serif; }
+  --orange: #cd8113;
+  --orangeHover: #e48c0c;
+  --exo2: 'Exo 2', sans-serif;
+  --ptsans: 'PT Sans', sans-serif; }
 
 html,
 body {
@@ -29,6 +31,21 @@ main {
 .errorsContainer {
   color: red; }
 
+.navigationButton {
+  color: #fff;
+  background-color: var(--orange);
+  border-color: var(--orange); }
+
+.navigationButton:hover {
+  color: #fff;
+  background-color: var(--orangeHover);
+  border-color: var(--orangeHover); }
+
+.navigationButton:focus {
+  box-shadow: 0 0 0 0.25rem var(--orange);
+  background-color: var(--orangeHover);
+  border-color: var(--orangeHover); }
+
 #landingContainer {
   text-align: center;
   position: fixed;
@@ -37,5 +54,38 @@ main {
   transform: translate(-50%, -50%); }
   #landingContainer .landingTextContainer {
     color: white; }
+    #landingContainer .landingTextContainer h1 {
+      font-family: var(--exo2);
+      font-weight: 700;
+      font-size: 3.5rem; }
+    #landingContainer .landingTextContainer p {
+      font-family: var(--ptsans);
+      font-size: 1.2rem; }
+
+#headerContainer #logo {
+  color: white;
+  font-family: var(--exo2);
+  font-weight: 700;
+  font-size: 1.5rem; }
+
+#headerContainer ul li .menuLink {
+  color: white;
+  font-family: var(--ptsans);
+  font-size: 1.3rem;
+  font-weight: 700; }
+
+#footerContainer {
+  display: flex;
+  justify-content: flex-end;
+  color: white; }
+  #footerContainer .footerContentContainer {
+    display: flex; }
+    #footerContainer .footerContentContainer a {
+      color: white; }
+    #footerContainer .footerContentContainer p {
+      margin-left: 15px;
+      margin-right: 15px;
+      font-size: 18px;
+      font-family: var(--ptsans); }
 
 /*# sourceMappingURL=style.css.map */
