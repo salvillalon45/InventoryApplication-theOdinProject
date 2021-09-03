@@ -30,6 +30,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // View Engine Setup
 // ---------------------------------------------------------
 app.set('views', path.join(__dirname, 'views'));
+// app.set('views', [
+// 	__dirname + '/item',
+// 	__dirname + '/category',
+// 	__dirname + '/landing',
+// 	__dirname + '/error'
+// ]);
 app.set('view engine', 'ejs');
 
 // Use Middleware
@@ -67,7 +73,7 @@ app.use(function (err, req, res, next) {
 
 	// render the error page
 	res.status(err.status || 500);
-	res.render('error');
+	res.render('error/error');
 });
 
 module.exports = app;

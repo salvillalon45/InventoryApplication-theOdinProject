@@ -10,8 +10,8 @@ exports.category_list = function (req, res, next) {
 			return next(err);
 		}
 
-		res.render('category_list', {
-			title: 'Video Game Categories',
+		res.render('category/category_list', {
+			title: 'Our Video Game Collection',
 			category_list: category_list
 		});
 	});

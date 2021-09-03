@@ -1,0 +1,40 @@
+<%- include('../layout/header') -%>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1><%= title %></h1>
+			<p>
+				<a href="/home/category/create">Create A New Category</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="test">
+				<% category_list.forEach(category => { %>
+				<div class="card" style="width: 18rem">
+					<img
+						src="<%=  %>"
+						class="card-img-top"
+						alt="Image of Video Game"
+					/>
+					<div class="card-body">
+						<h5 class="card-title"><%= category.name %></h5>
+						<p>
+							<a
+								href="<%= category.url %>"
+								class="btn btn-primary"
+								>Check Our Video Games</a
+							>
+						</p>
+					</div>
+				</div>
+				<%}) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('../layout/footer') -%>
