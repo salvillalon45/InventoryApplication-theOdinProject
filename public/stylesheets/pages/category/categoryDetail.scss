@@ -1,6 +1,6 @@
 // -----------------------------------------------
 //
-// Styling for Category List page
+// Styling for Category Detail page
 //
 // -----------------------------------------------
 #categoryDetailContainer {
@@ -12,7 +12,15 @@
 
 	.textIntroContainer {
 		.buttonContainer {
+			display: flex;
 			justify-content: center;
+
+			#left {
+				margin-right: 30px;
+			}
+			#right {
+				margin-left: 30px;
+			}
 		}
 	}
 }

@@ -35,14 +35,34 @@
 					<label for="category" class="form-label"
 						>Video Game Console</label
 					>
-					<input
+					<div>
+						<select
+							class="form-select"
+							name="category"
+							id="pet-select"
+						>
+							<option value="">
+								--Please choose an option--
+							</option>
+							<%if (category_list === null) { %>
+							<option value="<%= category.name %>">
+								<%= category.name %>
+							</option>
+							<% category_list.forEach(category => {%>
+							<option value="<%= category.name %>">
+								<%= category.name %>
+							</option>
+							<% }) %>
+						</select>
+					</div>
+					<!-- <input
 						type="text"
 						name="category"
 						class="form-control"
 						id="category"
 						placeholder="PSP, Game Boy, etc."
 						value="<%= null === item ? '' : item.category.name %>"
-					/>
+					/> -->
 				</div>
 
 				<div class="mb-3">
@@ -78,7 +98,7 @@
 						name="trailer_url"
 						class="form-control"
 						id="trailer_url"
-						value="<%= null === item ? '' : item.trailer_url %>"
+						value="<%- null === item ? '' : item.trailer_url %>"
 					/>
 				</div>
 
@@ -89,7 +109,7 @@
 						name="image_url"
 						class="form-control"
 						id="image_url"
-						value="<%= null === item ? '' : item.image_url %>"
+						value="<%- null === item ? '' : item.image_url %>"
 					/>
 				</div>
 

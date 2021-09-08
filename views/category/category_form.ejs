@@ -3,14 +3,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h1><%= title %></h1>
+			<div class="textIntroContainer">
+				<h1 class="title"><%= title %></h1>
+			</div>
+
+			<hr />
 
 			<form method="POST" action="">
 				<div class="mb-3">
 					<label for="name" class="form-label"
 						>Video Game Console Name</label
 					>
-					<p><%= category %></p>
 					<input
 						type="text"
 						name="name"
@@ -35,22 +38,36 @@
 					/>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<div class="mb-3">
+					<label for="image_url" class="form-label"
+						>Video Game Console Image Url</label
+					>
+					<input
+						type="text"
+						name="image_url"
+						class="form-control"
+						id="videoGameConsoleImageUrl"
+						placeholder=""
+						value="<%- (null === category || undefined === category) ? '' : category.image_url %>"
+					/>
+				</div>
+
+				<button type="submit" class="btn btn-success">Submit</button>
 			</form>
 
 			<%if (errors) { %>
 			<div class="errorsContainer">
 				<p>You got errors on the following:</p>
 				<ul>
-					<% for (var i = 0; i < errors.length; i++) {%>
+					<% errors.forEach(error => {%>
 
 					<li>
-						<%= errors[i].msg %> on <%= errors[i].param %>. The
-						value <%= errors[i].value === '' ? 'of empty field' : ''
-						%> is not allowed
+						<%= error.msg %> on <%= error.param %>. The value <%=
+						error.value === '' ? 'of empty field' : '' %> is not
+						allowed
 					</li>
 
-					<% } %>
+					<% }) %>
 				</ul>
 			</div>
 			<% }%>

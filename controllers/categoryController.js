@@ -31,7 +31,7 @@ exports.category_detail = function (req, res, next) {
 		function (err, results) {
 			if (err) {
 				return next(err);
-			} // Error in API usage.
+			}
 
 			if (results == null) {
 				// No results.
@@ -39,8 +39,7 @@ exports.category_detail = function (req, res, next) {
 				err.status = 404;
 				return next(err);
 			}
-			console.log('What are results');
-			console.log(results);
+
 			// Successful, so render.
 			res.render('category/category_detail', {
 				title: 'Category Detail Page',
@@ -62,24 +61,21 @@ exports.category_create_get = function (req, res) {
 
 // Handle category create on POST.
 exports.category_create_post = [
-	// Validate and sanitize fields.
 	body('name').trim().isLength({ min: 1 }).escape(),
 	body('description').trim().isLength({ min: 1 }).escape(),
+	body('image_url').trim().isLength({ min: 1 }).escape(),
 
-	// Process request after validation and sanitization
 	(req, res, next) => {
-		// Extract the validation errors from a request
 		const errors = validationResult(req);
 
-		// Create a Category object with escaped and trimmed data
 		const category = new Category({
 			name: req.body.name,
-			description: req.body.description
+			description: req.body.description,
+			image_url: req.body.image_url
 		});
 
 		if (!errors.isEmpty()) {
-			// There are errors. Render the form again with sanitized
-			// values/error messages
+			// There are errors. Render the form again with sanitized values/error messages
 			res.render('category/category_form', {
 				title: 'Create A New Category',
 				category: category,
@@ -98,18 +94,13 @@ exports.category_create_post = [
 
 				if (found_category) {
 					// Category exists, redirect to its detail page
-					console.log('Category exists, redirect to its detail page');
-
 					res.redirect(found_category.url);
 				} else {
 					category.save(function (err) {
 						if (err) {
 							return next(err);
 						}
-						console.log('Going to redirect');
-						console.log('what is url');
-						console.log(category.url);
-						console.log('/home' + category.url);
+
 						res.redirect(category.url);
 					});
 				}
@@ -130,19 +121,16 @@ exports.category_delete_get = function (req, res, next) {
 			}
 		},
 		function (err, results) {
-			console.log('What are videoGames');
-			console.log(results.category);
-			console.log(results.video_games.length);
-
 			if (err) {
 				return next(err);
 			}
+
 			if (results.category === null) {
 				// No results.
 				res.redirect('/home/categories');
 			}
+
 			// Successful, so render.
-			console.log('GOing to render');
 			res.render('category/category_delete', {
 				title: 'Delete Category',
 				category: results.category,
@@ -175,6 +163,7 @@ exports.category_delete_post = function (req, res, next) {
 					category: results.category,
 					video_games: results.video_games
 				});
+
 				return;
 			} else {
 				// Category has video games. Delete object and redirect to the list of categories.
@@ -218,24 +207,17 @@ exports.category_update_get = function (req, res, next) {
 
 // Handle category update on POST.
 exports.category_update_post = [
-	// Validate and sanitize fields.
 	body('name').trim().isLength({ min: 1 }).escape(),
 	body('description').trim().isLength({ min: 1 }).escape(),
 
-	// Process request after validation and sanitization
 	(req, res, next) => {
-		console.log('Going to begin');
-		// Extract the validation errors from a request
 		const errors = validationResult(req);
-
-		// Create a Category object with escaped and trimmed data
 		const category = new Category({
 			name: req.body.name,
 			description: req.body.description,
 			_id: req.params.id //This is required, or a new ID will be assigned!
 		});
-		console.log('The new Categoryu');
-		console.log(category);
+
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
 			res.render('category/category_form', {
@@ -252,12 +234,10 @@ exports.category_update_post = [
 				{},
 				function (err, thecategory) {
 					if (err) {
-						console.log('What is err when finding');
-						console.log(err);
 						return next(err);
 					}
+
 					// Successful - redirect to caetgory detail page.
-					console.log('GOing to redirect!');
 					res.redirect(thecategory.url);
 				}
 			);

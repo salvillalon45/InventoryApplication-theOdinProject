@@ -18,16 +18,22 @@ exports.item_detail = function (req, res, next) {
 
 // Display item create form on GET.
 exports.item_create_get = function (req, res) {
-	res.render('item/item_form', {
-		item: null,
-		title: 'Create A New Item',
-		errors: null
+	Category.find().exec(function (err, category_list) {
+		if (err) {
+			return next(err);
+		}
+
+		res.render('item/item_form', {
+			item: null,
+			category_list: category_list,
+			title: 'Create A New Item',
+			errors: null
+		});
 	});
 };
 
 // Handle item create on POST.
 exports.item_create_post = [
-	// Validate and sanitize fields.
 	body('name').trim().isLength({ min: 1 }).escape(),
 	body('stock').trim().isLength({ min: 1 }).escape(),
 	body('price').trim().isLength({ min: 1 }).escape(),
@@ -36,12 +42,10 @@ exports.item_create_post = [
 	body('trailer_url').trim().isLength({ min: 1 }).escape(),
 	body('image_url').trim().isLength({ min: 1 }).escape(),
 
-	// Process request after validation and sanitization
 	(req, res, next) => {
-		// Extract the validation errors from a request
+		console.log('What is category');
+		console.log(req.body.category);
 		const errors = validationResult(req);
-
-		// Create a Item object with escaped and trimmed data
 		const item = new Item({
 			name: req.body.name,
 			description: req.body.description,
@@ -52,20 +56,7 @@ exports.item_create_post = [
 			image_url: req.body.image_url
 		});
 
-		console.log('what is item!');
-		console.log(req.body.category);
-		console.log(item);
-
 		if (!errors.isEmpty()) {
-			// There are errors. Render the form again with sanitized
-			// values/error messages
-			// console.log('THERE IS AN ERROR');
-			// res.render('item_form', {
-			// 	title: 'Create A New Item',
-			// 	item: item,
-			// 	errors: errors.array()
-			// });
-			// Get all authors and genres for form.
 			async.parallel(
 				{
 					category: function (callback) {
@@ -76,8 +67,6 @@ exports.item_create_post = [
 					if (err) {
 						return next(err);
 					}
-					console.log('What are categories_db');
-					console.log(categories_db);
 					// Mark our selected genres as checked.
 					// for (let i = 0; i < categories_db.length; i++) {
 					// 	if (categories_db[i].name === item.category.name) {
@@ -153,19 +142,16 @@ exports.item_create_post = [
 // Display item delete form on GET.
 exports.item_delete_get = function (req, res, next) {
 	Item.findById(req.params.id).exec(function (err, item) {
-		console.log('Inside item_delete_get()');
-		console.log('What is item');
-		console.log(item);
 		if (err) {
 			return next(err);
 		}
 
 		if (item === null) {
-			// No results.
+			// No results
 			res.redirect('/home/categories');
 		}
+
 		// Successful, so render.
-		console.log('GOing to render');
 		res.render('item/item_delete', {
 			title: 'Delete Item',
 			item: item
@@ -175,13 +161,13 @@ exports.item_delete_get = function (req, res, next) {
 
 // Handle item delete on POST.
 exports.item_delete_post = function (req, res, next) {
-	Item.findById(req.params.id).exec(function (err, item) {
+	Item.findById(req.params.id).exec(function (err) {
 		if (err) {
 			return next(err);
 		}
 
 		// Category has video games. Delete object and redirect to the list of categories.
-		Item.findByIdAndRemove(req.params.id, function deleteCategory(err) {
+		Item.findByIdAndRemove(req.params.id, function (err) {
 			if (err) {
 				return next(err);
 			}
@@ -206,18 +192,14 @@ exports.item_update_get = function (req, res, next) {
 			return next(err);
 		}
 
-		console.log('What are results from itemUpdate');
-		console.log(item);
 		Category.findById(item.category).then((category) => {
-			console.log('Found category');
-			console.log(category);
-
 			item.category = category;
 
 			res.render('item/item_form', {
 				item: item,
 				title: 'Update Item',
-				errors: null
+				errors: null,
+				category_list: null
 			});
 		});
 	});
@@ -225,7 +207,6 @@ exports.item_update_get = function (req, res, next) {
 
 // Handle item update on POST.
 exports.item_update_post = [
-	// Validate and sanitize fields.
 	body('name').trim().isLength({ min: 1 }).escape(),
 	body('stock').trim().isLength({ min: 1 }).escape(),
 	body('price').trim().isLength({ min: 1 }).escape(),
@@ -234,16 +215,8 @@ exports.item_update_post = [
 	body('trailer_url').trim().isLength({ min: 1 }).escape(),
 	body('image_url').trim().isLength({ min: 1 }).escape(),
 
-	// Process request after validation and sanitization
 	(req, res, next) => {
-		console.log('Going to begin');
-		console.log('Category Check');
-		console.log(req.body);
-		console.log(req.body.category);
-		// Extract the validation errors from a request
 		const errors = validationResult(req);
-
-		// Create a Category object with escaped and trimmed data
 		const item = new Item({
 			name: req.body.name,
 			description: req.body.description,
@@ -255,18 +228,10 @@ exports.item_update_post = [
 			_id: req.params.id //This is required, or a new ID will be assigned!
 		});
 
-		console.log('The new Item');
-		console.log(item);
-		console.log(item.category);
-		Category.find({ name: req.body.category }).then((category) => {
-			console.log('Found category');
-			console.log(category[0]);
-			item.category = category[0];
+		Category.find({ name: req.body.category }).then((results) => {
+			item.category = results[0];
 
-			console.log('What is item after item.category');
-			console.log(item);
 			if (!errors.isEmpty()) {
-				// There are errors. Render form again with sanitized values/error messages.
 				res.render('item/item_form', {
 					title: 'Update Item',
 					item: item,
@@ -282,12 +247,9 @@ exports.item_update_post = [
 					{},
 					function (err, theitem) {
 						if (err) {
-							console.log('What is err when finding');
-							console.log(err);
 							return next(err);
 						}
 						// Successful - redirect to item detail page.
-						console.log('GOing to redirect!');
 						res.redirect(theitem.url);
 					}
 				);

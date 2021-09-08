@@ -8,8 +8,9 @@
 				<div class="buttonContainer">
 					<p>
 						<a
-							href="home/category/create"
+							href="/home/item/create"
 							class="btn navigationButton ptSans"
+							id="left"
 							>Add New Item</a
 						>
 					</p>
@@ -26,6 +27,7 @@
 						<a
 							href="<%= category.url %>/delete"
 							class="btn btn-danger"
+							id="right"
 							>Delete Category</a
 						>
 					</p>
@@ -52,7 +54,7 @@
 				<% video_games.forEach(video_game => { %>
 				<div class="card text-center cardItem" style="width: 18rem">
 					<img
-						src="<%= video_game.image_url %>"
+						src="<%- video_game.image_url %>"
 						class="card-img-top"
 						alt="Image of Video Game"
 					/>

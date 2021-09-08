@@ -100,8 +100,8 @@ function createItems(cb) {
 					'Originally released for the Game Boy™ Color system in 2000, the Pokémon™ Crystal game added several new features to the Pokémon franchise. For the first time, players could choose a female or male character, Pokémon battles featured animation, and more. And now, this Virtual Console release invites you to explore the Johto region again—or for the first time.',
 					// 'Game Boy Color',
 					categories[1],
-					'https://upload.wikimedia.org/wikipedia/en/a/af/Pokemon_Crystal_Box.png',
 					'https://youtu.be/4RA_cS4aXUY',
+					'https://upload.wikimedia.org/wikipedia/en/a/af/Pokemon_Crystal_Box.png',
 					callback
 				);
 			},
@@ -141,6 +141,18 @@ function createItems(cb) {
 					categories[4],
 					'https://youtu.be/CPmR2kAvrqo',
 					'https://m.media-amazon.com/images/I/519LgOv9z7L.jpg',
+					callback
+				);
+			},
+			function (callback) {
+				itemCreate(
+					'Kingdom Hearts: Birth by Sleep',
+					100,
+					'$39.99',
+					'Ten years before Sora held the Keyblade, three young Keyblade wielders bound by friendship, face being torn apart by the sinister monsters terrorizing other worlds and the manipulative mastermind behind them.',
+					categories[5],
+					'https://youtu.be/0n5EhBkrhDE',
+					'https://upload.wikimedia.org/wikipedia/en/9/9a/Kingdom_Hearts_Birth_by_Sleep_Boxart.jpg',
 					callback
 				);
 			}
@@ -190,6 +202,14 @@ function createCategory(cb) {
 					'Nintendo Wii',
 					"The Wii (/wiː/ WEE) is a home video game console developed and marketed by Nintendo. It was first released on November 19, 2006, in North America and in December 2006 for most other regions. It is Nintendo's fifth major home game console, following the GameCube, and is a seventh generation home console alongside Microsoft's Xbox 360 and Sony's PlayStation 3.",
 					'https://upload.wikimedia.org/wikipedia/commons/1/14/Wii-console.jpg',
+					callback
+				);
+			},
+			function (callback) {
+				categoryCreate(
+					'PlayStation Portable',
+					'The PlayStation Portable (PSP) is a handheld game console developed and marketed by Sony Computer Entertainment. It was first released in Japan on December 12, 2004, in North America on March 24, 2005, and in PAL regions on September 1, 2005, and is the first handheld installment in the PlayStation line of consoles. As a seventh generation console it competed with the Nintendo DS.',
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Psp-1000.jpg/1920px-Psp-1000.jpg',
 					callback
 				);
 			}

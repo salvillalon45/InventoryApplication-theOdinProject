@@ -24,11 +24,6 @@ const ItemSchema = new Schema({
 		ref: 'Category',
 		required: true
 	},
-	// category_ref: {
-	// 	type: Schema.Types.ObjectId,
-	// 	ref: 'Category',
-	// 	required: true
-	// },
 	trailer_url: {
 		type: String,
 		required: true

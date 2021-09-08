@@ -104,11 +104,16 @@ main {
 	border-color: var(--orangeHover);
 }
 
-// View Styles
+// Page Styling
 // --------------------------------------------
 @import './layout/header.scss';
 @import './layout/footer.scss';
 @import './pages/index.scss';
-@import './pages/categoryList.scss';
-@import './pages/categoryDetail.scss';
-@import './pages/itemDetail.scss';
+
+// Category
+@import './pages/category/categoryList.scss';
+@import './pages/category/categoryDetail.scss';
+@import './pages/category/categoryDelete.scss';
+
+// Item
+@import './pages/item/itemDetail.scss';

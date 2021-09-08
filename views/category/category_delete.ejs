@@ -1,11 +1,18 @@
 <%- include('../layout/header') -%>
 
-<div class="container">
+<div class="container" id="categoryDeleteContainer">
 	<div class="row">
 		<div class="col">
-			<h1><%= title %></h1>
-			<p><%= category.name %></p>
+			<div class="textIntroContainer">
+				<h1 class="title"><%= title %></h1>
+			</div>
 		</div>
+	</div>
+
+	<hr />
+
+	<div class="categoryDeleteTextContainer">
+		<h2>Going to delete: <%= category.name %></h2>
 	</div>
 
 	<%if (video_games.length) { %>
@@ -17,17 +24,12 @@
 			</b>
 		</p>
 
-		<p>Video Games</p>
-
 		<div>
-			<% for (let i = 0; i < video_games.length; i++) {%>
+			<% video_games.forEach(video_game => {%>
 			<p>
-				<a href="<%= video_games[i].url %>">
-					<%= video_games[i].name %>
-				</a>
+				<a href="<%= video_game.url %>"> <%= video_game.name %> </a>
 			</p>
-			<!-- <p><a href="<%= video_games[0].url %>"></p> -->
-			<% } %>
+			<% }) %>
 		</div>
 	</div>
 	<% } else { %>
@@ -44,7 +46,7 @@
 				value="<%= category._id %>"
 				class="form-control"
 			/>
-			<button type="submit" class="btn btn-primary">Delete</button>
+			<button type="submit" class="btn btn-danger">Delete</button>
 		</form>
 	</div>
 	<% }%>

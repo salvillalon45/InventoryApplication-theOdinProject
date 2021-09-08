@@ -124,7 +124,18 @@ main {
   #categoryDetailContainer .categoryDescriptionContainer {
     margin-bottom: 50px; }
   #categoryDetailContainer .textIntroContainer .buttonContainer {
+    display: flex;
     justify-content: center; }
+    #categoryDetailContainer .textIntroContainer .buttonContainer #left {
+      margin-right: 30px; }
+    #categoryDetailContainer .textIntroContainer .buttonContainer #right {
+      margin-left: 30px; }
+
+#categoryDeleteContainer .categoryDeleteTextContainer {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+  #categoryDeleteContainer .categoryDeleteTextContainer h2 {
+    font-weight: 600; }
 
 #itemDetailContainer {
   margin-top: 50px; }
