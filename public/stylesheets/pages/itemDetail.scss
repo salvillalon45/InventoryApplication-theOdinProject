@@ -1,0 +1,21 @@
+// -----------------------------------------------
+//
+// Styling for Item Detail page
+//
+// -----------------------------------------------
+#itemDetailContainer {
+	margin-top: 50px;
+
+	.buttonContainer {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 30px;
+
+		#left {
+			margin-right: -50px;
+		}
+		#right {
+			margin-left: -50px;
+		}
+	}
+}

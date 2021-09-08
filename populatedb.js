@@ -61,8 +61,8 @@ function itemCreate(
 	});
 }
 
-function categoryCreate(name, description, cb) {
-	var category = new Category({ name, description });
+function categoryCreate(name, description, image_url, cb) {
+	var category = new Category({ name, description, image_url });
 
 	category.save(function (err) {
 		if (err) {
@@ -157,6 +157,7 @@ function createCategory(cb) {
 				categoryCreate(
 					'Nintendo 3DS',
 					"The Nintendo 3DS is a handheld game console produced by Nintendo. It was announced in March 2010 and unveiled at E3 2010 as the successor to the Nintendo DS. The system features backward compatibility with older Nintendo DS video games. As an eighth-generation console, its primary competitor was Sony's PlayStation Vita.",
+					'https://upload.wikimedia.org/wikipedia/commons/0/0a/Nintendo-3DS-AquaOpen.png',
 					callback
 				);
 			},
@@ -164,6 +165,7 @@ function createCategory(cb) {
 				categoryCreate(
 					'Game Boy Color',
 					'The Game Boy Color (commonly abbreviated as GBC) is a handheld game console, manufactured by Nintendo, which was released in Japan on October 21, 1998 and to international markets that November. It is the successor to the Game Boy and is part of the Game Boy family.',
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Nintendo-Game-Boy-Color-FL.png/651px-Nintendo-Game-Boy-Color-FL.png',
 					callback
 				);
 			},
@@ -171,6 +173,7 @@ function createCategory(cb) {
 				categoryCreate(
 					'Game Boy Advance',
 					'The Game Boy Advance[a] (GBA) is a 32-bit handheld game console developed, manufactured and marketed by Nintendo as the successor to the Game Boy Color. It was released in Japan on March 21, 2001, in North America on June 11, 2001, in the PAL region on June 22, 2001, and in mainland China as iQue Game Boy Advance on June 8, 2004. The GBA is part of the sixth generation of video game consoles. The original model does not have an illuminated screen; Nintendo addressed that with the release of a redesigned model with a frontlit screen, the Game Boy Advance SP, in 2003. A newer revision of the redesign was released in 2005, with a backlit screen. Around the same time, the final redesign, the Game Boy Micro, was released in September 2005.',
+					'https://upload.wikimedia.org/wikipedia/commons/7/7d/Nintendo-Game-Boy-Advance-Purple-FL.jpg',
 					callback
 				);
 			},
@@ -178,6 +181,7 @@ function createCategory(cb) {
 				categoryCreate(
 					'Nintendo Switch',
 					'The Nintendo Switch[h] is a video game console developed by Nintendo and released worldwide in most regions on March 3, 2017. The console itself is a tablet that can either be docked for use as a home console or used as a portable device, making it a hybrid console. Its wireless Joy-Con controllers, with standard buttons and directional analog sticks for user input, motion sensing, and tactile feedback, can attach to both sides of the console to support handheld-style play.',
+					'https://upload.wikimedia.org/wikipedia/commons/8/88/Nintendo-Switch-wJoyCons-BlRd-Standing-FL.jpg',
 					callback
 				);
 			},
@@ -185,6 +189,7 @@ function createCategory(cb) {
 				categoryCreate(
 					'Nintendo Wii',
 					"The Wii (/wiː/ WEE) is a home video game console developed and marketed by Nintendo. It was first released on November 19, 2006, in North America and in December 2006 for most other regions. It is Nintendo's fifth major home game console, following the GameCube, and is a seventh generation home console alongside Microsoft's Xbox 360 and Sony's PlayStation 3.",
+					'https://upload.wikimedia.org/wikipedia/commons/1/14/Wii-console.jpg',
 					callback
 				);
 			}

@@ -19,14 +19,17 @@
 	--ptsans: 'PT Sans', sans-serif;
 }
 
+// Layout for entire website
+// -----------------------------------------------
 html,
 body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	height: 100%;
-	font-family: var(--source);
+	font-family: var(--ptsans);
 	background-color: var(--blue);
+	color: white;
 }
 
 body {
@@ -38,16 +41,51 @@ main {
 	flex: 1 0 auto;
 }
 
-.test {
+// Text
+// -----------------------------------------------
+.exo2 {
+	font-family: var(--exo2);
+}
+
+.ptSans {
+	font-family: var(--ptsans);
+}
+
+.title {
+	font-family: var(--exo2);
+	font-weight: 700;
+}
+
+// Layout for cards
+// -----------------------------------------------
+.gridDisplay {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 16px;
+}
+
+.textIntroContainer {
+	display: flex;
+
+	h1 {
+		margin-right: 50px;
+	}
+
+	a {
+		margin-top: 5px;
+	}
+}
+
+.cardItem {
+	color: black;
 }
 
 .errorsContainer {
 	color: red;
 }
 
+// Buttons
+// -----------------------------------------------
 .navigationButton {
 	color: #fff;
 	background-color: var(--orange);
@@ -68,6 +106,9 @@ main {
 
 // View Styles
 // --------------------------------------------
-@import './pages/index.scss';
 @import './layout/header.scss';
 @import './layout/footer.scss';
+@import './pages/index.scss';
+@import './pages/categoryList.scss';
+@import './pages/categoryDetail.scss';
+@import './pages/itemDetail.scss';

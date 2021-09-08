@@ -1,0 +1,60 @@
+<%- include('../layout/header') -%>
+
+<div class="container" id="itemDetailContainer">
+	<div class="row">
+		<div class="col">
+			<img
+				src="<%= item.image_url %>"
+				class="img-fluid"
+				alt="Video Game Picture"
+			/>
+		</div>
+
+		<div class="col">
+			<h1 class="title"><%= item.name %></h1>
+			<hr />
+			<p>
+				<b>Description:</b>
+				<%= item.description %>
+			</p>
+			<p>
+				<b>Price: </b>
+				<%= item.price %>
+			</p>
+			<p>
+				<b>Stock: </b>
+				<%= item.stock %>
+			</p>
+
+			<hr />
+
+			<div class="buttonContainer">
+				<p>
+					<a
+						href="<%= item.trailer_url %>"
+						id="left"
+						class="btn navigationButton ptSans"
+						>Watch the trailer</a
+					>
+				</p>
+				<p>
+					<a
+						href="<%= item.url + '/update' %>"
+						class="btn btn-success ptSans"
+						>Update Item</a
+					>
+				</p>
+				<p>
+					<a
+						href="<%= item.url + '/delete' %>"
+						id="right"
+						class="btn ptSans btn-danger"
+						>Delete Item</a
+					>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('../layout/footer') -%>

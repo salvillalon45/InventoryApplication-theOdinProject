@@ -1,0 +1,18 @@
+// -----------------------------------------------
+//
+// Styling for Category List page
+//
+// -----------------------------------------------
+#categoryDetailContainer {
+	margin-top: 25px;
+
+	.categoryDescriptionContainer {
+		margin-bottom: 50px;
+	}
+
+	.textIntroContainer {
+		.buttonContainer {
+			justify-content: center;
+		}
+	}
+}

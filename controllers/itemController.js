@@ -10,7 +10,7 @@ exports.item_detail = function (req, res, next) {
 			return next(err);
 		}
 
-		res.render('item_detail', {
+		res.render('item/item_detail', {
 			item: item
 		});
 	});
@@ -18,7 +18,7 @@ exports.item_detail = function (req, res, next) {
 
 // Display item create form on GET.
 exports.item_create_get = function (req, res) {
-	res.render('item_form', {
+	res.render('item/item_form', {
 		item: null,
 		title: 'Create A New Item',
 		errors: null
@@ -86,7 +86,7 @@ exports.item_create_post = [
 					// }
 					console.log('What are errors');
 					console.log(errors);
-					res.render('item_form', {
+					res.render('item/item_form', {
 						title: 'Create Book',
 						item: {
 							name: req.body.name,
@@ -166,7 +166,7 @@ exports.item_delete_get = function (req, res, next) {
 		}
 		// Successful, so render.
 		console.log('GOing to render');
-		res.render('item_delete', {
+		res.render('item/item_delete', {
 			title: 'Delete Item',
 			item: item
 		});
@@ -214,7 +214,7 @@ exports.item_update_get = function (req, res, next) {
 
 			item.category = category;
 
-			res.render('item_form', {
+			res.render('item/item_form', {
 				item: item,
 				title: 'Update Item',
 				errors: null
@@ -267,7 +267,7 @@ exports.item_update_post = [
 			console.log(item);
 			if (!errors.isEmpty()) {
 				// There are errors. Render form again with sanitized values/error messages.
-				res.render('item_form', {
+				res.render('item/item_form', {
 					title: 'Update Item',
 					item: item,
 					errors: errors.array()

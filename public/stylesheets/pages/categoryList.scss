@@ -1,0 +1,24 @@
+// -----------------------------------------------
+//
+// Styling for Category List page
+//
+// -----------------------------------------------
+#categoryListContainer {
+	margin-top: 25px;
+
+	hr {
+		margin-bottom: 50px;
+	}
+
+	.categoryCardImage {
+		margin: 0 auto;
+		width: 255px;
+		height: 200px;
+		object-fit: cover;
+	}
+
+	.card {
+		.consoleCard {
+		}
+	}
+}

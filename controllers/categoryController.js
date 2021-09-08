@@ -42,7 +42,7 @@ exports.category_detail = function (req, res, next) {
 			console.log('What are results');
 			console.log(results);
 			// Successful, so render.
-			res.render('category_detail', {
+			res.render('category/category_detail', {
 				title: 'Category Detail Page',
 				category: results.category,
 				video_games: results.video_games
@@ -53,7 +53,7 @@ exports.category_detail = function (req, res, next) {
 
 // Display category create form on GET.
 exports.category_create_get = function (req, res) {
-	res.render('category_form', {
+	res.render('category/category_form', {
 		category: null,
 		title: 'Create A New Category',
 		errors: null
@@ -80,7 +80,7 @@ exports.category_create_post = [
 		if (!errors.isEmpty()) {
 			// There are errors. Render the form again with sanitized
 			// values/error messages
-			res.render('category_form', {
+			res.render('category/category_form', {
 				title: 'Create A New Category',
 				category: category,
 				errors: errors.array()
@@ -143,7 +143,7 @@ exports.category_delete_get = function (req, res, next) {
 			}
 			// Successful, so render.
 			console.log('GOing to render');
-			res.render('category_delete', {
+			res.render('category/category_delete', {
 				title: 'Delete Category',
 				category: results.category,
 				video_games: results.video_games
@@ -170,7 +170,7 @@ exports.category_delete_post = function (req, res, next) {
 			// Success
 			if (results.video_games.length > 0) {
 				// Category has video games. Render in same way as for GET route.
-				res.render('category_delete', {
+				res.render('category/category_delete', {
 					title: 'Delete Category',
 					category: results.category,
 					video_games: results.video_games
@@ -208,7 +208,7 @@ exports.category_update_get = function (req, res, next) {
 			return next(err);
 		}
 
-		res.render('category_form', {
+		res.render('category/category_form', {
 			category: results,
 			title: 'Update Category',
 			errors: null
@@ -238,7 +238,7 @@ exports.category_update_post = [
 		console.log(category);
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
-			res.render('category_form', {
+			res.render('category/category_form', {
 				title: 'Update Category',
 				category: category,
 				errors: errors.array()

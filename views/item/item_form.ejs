@@ -1,9 +1,9 @@
-<%- include('./layout/header') -%>
+<%- include('../layout/header') -%>
 
-<div class="container">
+<div class="container" id="itemFormContainer">
 	<div class="row">
 		<div class="col">
-			<h1><%= title %></h1>
+			<h1 class="title"><%= title %></h1>
 
 			<form method="POST" action="">
 				<div class="mb-3">
@@ -26,7 +26,7 @@
 						name="description"
 						class="form-control"
 						id="videoGameConsoleDescription"
-						placeholder="The PSP is ..."
+						placeholder="Pokemon FireRed is ..."
 						value="<%= null === item ? '' : item.description %>"
 					/>
 				</div>
@@ -93,22 +93,22 @@
 					/>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-success">Submit</button>
 			</form>
 
 			<%if (errors) { %>
 			<div class="errorsContainer">
 				<p>You got errors on the following:</p>
 				<ul>
-					<% for (var i = 0; i < errors.length; i++) {%>
+					<% errors.forEach(error => {%>
 
 					<li>
-						<%= errors[i].msg %> on <%= errors[i].param %>. The
-						value <%= errors[i].value === '' ? 'of empty field' : ''
-						%> is not allowed
+						<%= error.msg %> on <%= error.param %>. The value <%=
+						error.value === '' ? 'of empty field' : '' %> is not
+						allowed
 					</li>
 
-					<% } %>
+					<% }) %>
 				</ul>
 			</div>
 			<% }%>
@@ -116,4 +116,4 @@
 	</div>
 </div>
 
-<%- include('./layout/footer') -%>
+<%- include('../layout/footer') -%>

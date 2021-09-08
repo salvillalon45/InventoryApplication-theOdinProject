@@ -1,32 +1,43 @@
 <%- include('../layout/header') -%>
 
-<div class="container">
+<div class="container" id="categoryListContainer">
 	<div class="row">
 		<div class="col">
-			<h1><%= title %></h1>
-			<p>
-				<a href="/home/category/create">Create A New Category</a>
-			</p>
+			<div class="textIntroContainer">
+				<h1 class="title"><%= title %></h1>
+
+				<p>
+					<a
+						class="btn navigationButton ptSans"
+						href="/home/category/create"
+						>Create A New Category</a
+					>
+				</p>
+			</div>
+
+			<hr />
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col">
-			<div class="test">
+			<div class="gridDisplay">
 				<% category_list.forEach(category => { %>
-				<div class="card" style="width: 18rem">
+				<div class="card text-center cardItem" style="width: 18rem">
 					<img
-						src="<%=  %>"
-						class="card-img-top"
+						src="<%= category.image_url %>"
+						class="card-img-top categoryCardImage"
 						alt="Image of Video Game"
 					/>
-					<div class="card-body">
-						<h5 class="card-title"><%= category.name %></h5>
+
+					<div class="card-body consoleCard">
+						<h5 class="card-title title"><%= category.name %></h5>
+
 						<p>
 							<a
 								href="<%= category.url %>"
-								class="btn btn-primary"
-								>Check Our Video Games</a
+								class="btn ptSans navigationButton"
+								>Check It Out</a
 							>
 						</p>
 					</div>

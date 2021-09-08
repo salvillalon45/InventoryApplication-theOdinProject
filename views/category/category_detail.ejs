@@ -1,0 +1,76 @@
+<%- include('../layout/header') -%>
+
+<div class="container" id="categoryDetailContainer">
+	<div class="row">
+		<div class="col">
+			<div class="textIntroContainer">
+				<h1 class="title"><%= category.name %></h1>
+				<div class="buttonContainer">
+					<p>
+						<a
+							href="home/category/create"
+							class="btn navigationButton ptSans"
+							>Add New Item</a
+						>
+					</p>
+
+					<p>
+						<a
+							href="<%= category.url %>/update"
+							class="btn btn-success"
+							>Update Category</a
+						>
+					</p>
+
+					<p>
+						<a
+							href="<%= category.url %>/delete"
+							class="btn btn-danger"
+							>Delete Category</a
+						>
+					</p>
+				</div>
+			</div>
+
+			<hr />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="categoryDescriptionContainer">
+				<p class="ptSans">
+					The <%= category.name %>: <%= category.description %>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="gridDisplay">
+				<% video_games.forEach(video_game => { %>
+				<div class="card text-center cardItem" style="width: 18rem">
+					<img
+						src="<%= video_game.image_url %>"
+						class="card-img-top"
+						alt="Image of Video Game"
+					/>
+					<div class="card-body">
+						<h5 class="card-title title"><%= video_game.name %></h5>
+						<p>
+							<a
+								href="<%= video_game.url %>"
+								class="btn navigationButton ptSans"
+								>Go to detail</a
+							>
+						</p>
+					</div>
+				</div>
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('../layout/footer') -%>
