@@ -1,5 +1,5 @@
 <h1 align="center">
-[The Odin Project: Node.js] - Project: Inventory Application
+[The Odin Project: Node] - Project: Inventory Application
 </h1>
 
 ## Intro
