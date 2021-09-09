@@ -19,7 +19,6 @@
 		"ejs": "~2.6.1",
 		"express": "~4.16.1",
 		"express-validator": "^6.12.1",
-		"helmet": "^4.6.0",
 		"http-errors": "~1.6.3",
 		"mongoose": "^5.13.7",
 		"morgan": "~1.9.1",

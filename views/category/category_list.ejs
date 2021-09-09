@@ -24,6 +24,7 @@
 			<div class="gridDisplay">
 				<% category_list.forEach(category => { %>
 				<div class="card text-center cardItem" style="width: 18rem">
+					<p><%- category.image_url %></p>
 					<img
 						src="<%- category.image_url %>"
 						class="card-img-top categoryCardImage"
