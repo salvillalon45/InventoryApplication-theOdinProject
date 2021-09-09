@@ -8,6 +8,7 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var compression = require('compression');
 // var helmet = require('helmet');
+var favicon = require('serve-favicon');
 
 // Routers
 // ---------------------------------------------------------
@@ -17,6 +18,7 @@ var homeRouter = require('./routes/home');
 var app = express();
 
 // app.use(helmet());
+app.use(favicon(path.join(__dirname, 'public', 'images', 'snes.ico')));
 
 // Set Up Mongoose Connection
 // ---------------------------------------------------------
