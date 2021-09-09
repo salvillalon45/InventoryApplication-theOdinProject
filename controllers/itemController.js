@@ -24,7 +24,7 @@ exports.item_create_get = function (req, res) {
 		}
 
 		res.render('item/item_form', {
-			item: null,
+			item: undefined,
 			category_list: category_list,
 			title: 'Create A New Item',
 			errors: null
@@ -43,8 +43,6 @@ exports.item_create_post = [
 	body('image_url').trim().isLength({ min: 1 }).escape(),
 
 	(req, res, next) => {
-		console.log('What is category');
-		console.log(req.body.category);
 		const errors = validationResult(req);
 		const item = new Item({
 			name: req.body.name,
@@ -67,14 +65,7 @@ exports.item_create_post = [
 					if (err) {
 						return next(err);
 					}
-					// Mark our selected genres as checked.
-					// for (let i = 0; i < categories_db.length; i++) {
-					// 	if (categories_db[i].name === item.category.name) {
-					// 		return;
-					// 	}
-					// }
-					console.log('What are errors');
-					console.log(errors);
+
 					res.render('item/item_form', {
 						title: 'Create Book',
 						item: {
@@ -113,22 +104,14 @@ exports.item_create_post = [
 
 					Category.findOne({ name: req.body.category }).then(
 						(category) => {
-							console.log('Found category');
-							console.log(category);
-
 							designatedCategory = category;
 							item.category = designatedCategory;
 
 							item.save(function (err) {
 								if (err) {
-									console.log('Error when saving new item');
-									console.log(err);
 									return next(err);
 								}
-								console.log('Going to redirect');
-								console.log('what is url');
-								console.log(item.url);
-								console.log('/home' + category.url);
+
 								res.redirect(item.url);
 							});
 						}
@@ -192,18 +175,50 @@ exports.item_update_get = function (req, res, next) {
 			return next(err);
 		}
 
-		Category.findById(item.category).then((category) => {
-			item.category = category;
+		async.parallel(
+			{
+				category: function (callback) {
+					Category.findById(item.category).exec(callback);
+				},
+				category_list: function (callback) {
+					Category.find().exec(callback);
+				}
+			},
+			function (err, results) {
+				if (err) {
+					return next(err);
+				}
 
-			res.render('item/item_form', {
-				item: item,
-				title: 'Update Item',
-				errors: null,
-				category_list: null
-			});
-		});
+				if (results === null) {
+					// No results.
+					const err = new Error('Categories not found');
+					err.status = 404;
+					return next(err);
+				}
+
+				item.category = results.category;
+
+				// Successful, so render.
+				res.render('item/item_form', {
+					item: item,
+					title: 'Update Item',
+					errors: null,
+					category_list: results.category_list
+				});
+			}
+		);
+		// Category.findById(item.category).then((category) => {
+		// 	item.category = category;
+		// 	Category.find().exec(function (err, category_list) {
+		// res.render('item/item_form', {
+		// 	item: item,
+		// 	title: 'Update Item',
+		// 	errors: null,
+		// 	category_list: null
+		// });
 	});
 };
+// };
 
 // Handle item update on POST.
 exports.item_update_post = [
