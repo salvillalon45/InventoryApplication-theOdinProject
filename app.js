@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var compression = require('compression');
+require('dotenv').config();
+
 // var helmet = require('helmet');
 var favicon = require('serve-favicon');
 
@@ -23,9 +25,9 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'snes.ico')));
 // Set Up Mongoose Connection
 // ---------------------------------------------------------
 const mongoose = require('mongoose');
-var dev_db_url =
-	'mongodb+srv://saltest:theOdinProjectNodeInventoryApplication@cluster-odininventoryap.fgmgk.mongodb.net/inventory?retryWrites=true&w=majority';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+// var dev_db_url =
+// 'mongodb+srv://saltest:theOdinProjectNodeInventoryApplication@cluster-odininventoryap.fgmgk.mongodb.net/inventory?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || process.env.DEV_MONGODB_URI;
 mongoose.connect(mongoDB, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
