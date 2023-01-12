@@ -16,10 +16,10 @@
 
 |  Color            |  Hex                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
-|  Orange           |  ![#cd8113](https://via.placeholder.com/10/cd8113?text=+) `#cd8113`  |
-|  Orange Hover     |  ![#e48c0c](https://via.placeholder.com/10/e48c0c?text=+) `#e48c0c`  |
-|  White            |  ![#fff](https://via.placeholder.com/10/fff?text=+) `#fff`           |
-| Black             |  ![#181a2b](https://via.placeholder.com/10/181a2b?text=+) `#181a2b`  |
+|  Orange           |  ![#cd8113](https://placehold.co/15x15/cd8113/cd8113.png) `#cd8113`  |
+|  Orange Hover     |  ![#e48c0c](https://placehold.co/15x15/e48c0c/e48c0c.png) `#e48c0c`  |
+|  White            |  ![#fff](https://placehold.co/15x15/fff/fff.png) `#fff`              |
+|  Black            |  ![#181a2b](https://placehold.co/15x15/181a2b/181a2b.png) `#181a2b`  |
 
 ## Overall & Next Steps
 
